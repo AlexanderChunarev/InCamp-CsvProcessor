@@ -45,6 +45,7 @@ namespace InCamp_CsvProcessor.processors
 
         private void WriteHeaders(CsvWriter csvWriter)
         {
+            csvWriter.WriteField("Name/Date");
             foreach (DateTime date in DateTimes.Value)
             {
                 csvWriter.WriteField(date.ToString("yyyy-MM-dd"));
