@@ -1,4 +1,5 @@
 ﻿using System;
+using InCamp_CsvProcessor.processors;
 
 namespace InCamp_CsvProcessor
 {
@@ -6,7 +7,7 @@ namespace InCamp_CsvProcessor
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            new CsvProcessor("acme_worksheet.csv").Process();
         }
     }
 }
