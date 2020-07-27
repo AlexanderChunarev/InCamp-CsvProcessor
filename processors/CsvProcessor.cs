@@ -25,7 +25,7 @@ namespace InCamp_CsvProcessor.processors
             using var csvReader = new CsvReader(reader, CultureInfo.InvariantCulture);
             csvReader.Configuration.Delimiter = ",";
             csvReader.Configuration.RegisterClassMap<EmployeeMap>();
-            return csvReader.GetRecords<Employee>().OrderBy(name => name.EmployeeName).ToList();
+            return csvReader.GetRecords<Employee>().OrderBy(name => name.Name).ToList();
         }
 
         public void Process()
@@ -60,11 +60,10 @@ namespace InCamp_CsvProcessor.processors
             foreach (Employee employee in employees)
             {
                 currentEmpoyee.Add(employee);
-                if ((!currentEmpoyee.ElementAt(0).EmployeeName.Equals(employee.EmployeeName))
+                if ((!currentEmpoyee.ElementAt(0).Name.Equals(employee.Name))
                     || employees.IndexOf(employee).Equals(employees.Count - 1))
                 {
-                    csvWriter.WriteField(currentEmpoyee.ElementAt(0).EmployeeName);
-
+                    csvWriter.WriteField(currentEmpoyee.ElementAt(0).Name);
                     foreach (DateTime date in DateTimes.Value)
                     {
                         if (currentEmpoyee.Count > 0 && DateTime.Equals(date, currentEmpoyee.ElementAt(0).Date))
